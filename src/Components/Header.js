@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
+import { auth } from "../firebase";
 const Header = () => {
+  const [{ basket, user }, dispatch] = useStateValue();
+
+  const getUserName = () => {
+    if (user) {
+      return user.email.slice(0, user.email.indexOf("@"));
+    }
+    return "Guest";
+  };
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+  const handleAuth = () => {
+    if (user) {
+      auth.signOut();
+      dispatch({ type: "SET_USER", user: null });
+    }
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -18,10 +37,17 @@ const Header = () => {
         <SearchIcon className="header__searchIcon" />
       </div>
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__optionLineOne">Hello, Guest</span>
-          <span className="header__optionLineTwo">Sign in</span>
-        </div>
+        <Link to={!user && "Login"}>
+          <div className="header__option" onClick={handleAuth}>
+            <span className="header__optionLineOne">
+              Hello, {getUserName()}
+            </span>
+            <span className="header__optionLineTwo">
+              {user ? "Sign out" : "Sign in"}
+            </span>
+          </div>
+        </Link>
+
         <div className="header__option">
           <span className="header__optionLineOne">Returns</span>
           <span className="header__optionLineTwo">& Orders</span>
@@ -33,7 +59,9 @@ const Header = () => {
         <Link to="Checkout">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
-            <span className="header__optionLineTwo header__basketCount">0</span>
+            <span className="header__optionLineTwo header__basketCount">
+              {basket?.length}
+            </span>
           </div>
         </Link>
       </div>

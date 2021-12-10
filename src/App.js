@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Checkout from "./Components/Checkout";
-import { useState } from "react";
+import Login from "./Components/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       <div className="app">
         <Header />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/" element={<Home />} />
         </Routes>

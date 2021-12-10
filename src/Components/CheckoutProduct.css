@@ -1,0 +1,20 @@
+.checkoutProduct {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  max-width: 500px;
+}
+.checkoutProduct__image {
+  width: 150px;
+}
+.checkoutProduct__info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.checkoutProduct__title {
+  font-size: 800;
+}
+.checkoutProduct__rating {
+  display: flex;
+}

@@ -14,3 +14,11 @@
   padding: 10px;
   border-bottom: 1px solid lightgray;
 }
+.checkout__items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.checkout__right {
+  margin-left: 10px;
+}

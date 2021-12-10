@@ -1,7 +1,18 @@
 import React from "react";
+import { useStateValue } from "../StateProvider";
 import "./Product.css";
+import Button from "./Button";
+import nextId from "react-id-generator";
 
-const Product = ({ title, image, price, rating, addToBasket }) => {
+const Product = ({ instanceId, id, title, image, price, rating }) => {
+  const [{ basket }, dispatch] = useStateValue();
+  const addToBasket = () => {
+    //dispatch item into data layer
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: { instanceId: nextId(), id, title, image, price, rating },
+    });
+  };
   return (
     <div className="product">
       <div className="product__info">
@@ -19,9 +30,7 @@ const Product = ({ title, image, price, rating, addToBasket }) => {
         </div>
       </div>
       <img src={image} />
-      <button onClick={() => addToBasket({ title, image, price, rating })}>
-        Add To Basket
-      </button>
+      <Button text="Add to basket" onClick={addToBasket} />
     </div>
   );
 };
