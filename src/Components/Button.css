@@ -7,4 +7,15 @@
   padding: 4px 8px;
   width: 200px;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: rgb(224, 224, 224);
+}
+.btn:disabled:hover {
+  opacity: 1;
+}
+.btn:hover {
+  opacity: 0.85;
 }

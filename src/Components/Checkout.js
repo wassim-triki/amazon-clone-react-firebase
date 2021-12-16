@@ -3,11 +3,8 @@ import { useStateValue } from "../StateProvider";
 import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import CheckoutProduct from "./CheckoutProduct";
-import nextId from "react-id-generator";
-import userEvent from "@testing-library/user-event";
-
 const Checkout = () => {
-  const [{ basket, user }, dispatch] = useStateValue();
+  const [{ basket, user }] = useStateValue();
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -19,15 +16,15 @@ const Checkout = () => {
         <div className="checkout__items">
           <h3>Hello, {user?.email}</h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
-          {basket.map((item) => (
+          {basket.map((item, key) => (
             <CheckoutProduct
-              key={nextId()}
+              key={key}
               instanceId={item.instanceId}
               id={item.id}
-              image={item.image}
               title={item.title}
               price={item.price}
               rating={item.rating}
+              image={item.image}
             />
           ))}
         </div>

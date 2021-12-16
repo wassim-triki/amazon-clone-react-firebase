@@ -3,6 +3,7 @@
   gap: 50px;
   align-items: flex-start;
   max-width: 500px;
+  margin: 30px 0 100px 0;
 }
 .checkoutProduct__image {
   width: 150px;

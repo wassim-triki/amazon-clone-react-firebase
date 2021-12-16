@@ -15,8 +15,6 @@ const Login = () => {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      console.log(user);
-
       user &&
         dispatch({
           type: "SET_USER",
@@ -37,7 +35,6 @@ const Login = () => {
     e.preventDefault();
     try {
       const obj = await createUserWithEmailAndPassword(auth, email, password);
-      // console.log(await obj);
       navigate("/");
     } catch (e) {
       alert(e.message);

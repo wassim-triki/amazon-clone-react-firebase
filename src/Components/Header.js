@@ -14,9 +14,6 @@ const Header = () => {
     }
     return "Guest";
   };
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
   const handleAuth = () => {
     if (user) {
       auth.signOut();
@@ -25,7 +22,7 @@ const Header = () => {
   };
   return (
     <div className="header">
-      <Link to="/">
+      <Link to="/" className="header__linkLogo">
         <img
           className="header__logo"
           src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -47,16 +44,19 @@ const Header = () => {
             </span>
           </div>
         </Link>
-
-        <div className="header__option">
-          <span className="header__optionLineOne">Returns</span>
-          <span className="header__optionLineTwo">& Orders</span>
-        </div>
-        <div className="header__option">
-          <span className="header__optionLineOne">Your</span>
-          <span className="header__optionLineTwo">Prime</span>
-        </div>
-        <Link to="Checkout">
+        <Link to="/orders">
+          <div className="header__option">
+            <span className="header__optionLineOne">Returns</span>
+            <span className="header__optionLineTwo">& Orders</span>
+          </div>
+        </Link>
+        <Link to="/">
+          <div className="header__option">
+            <span className="header__optionLineOne">Your</span>
+            <span className="header__optionLineTwo">Prime</span>
+          </div>
+        </Link>
+        <Link to="Checkout" className="header__linkBasket">
           <div className="header__optionBasket">
             <ShoppingBasketIcon />
             <span className="header__optionLineTwo header__basketCount">
